@@ -1,18 +1,23 @@
 import { createFixture } from 'fs-fixture';
 import spawn, { type Options } from 'nano-spawn';
 
-export const node = (
+export const createNode = ({ path }: { path: string }) => (
 	args: string[],
 	options?: Options,
-) => spawn(process.execPath, [...process.execArgv, ...args], options);
+) => spawn(path, args, options);
 
-export const getNodeConditions = async ({
-	nodeOptions = [],
-	NODE_OPTIONS = '',
-}: {
-	nodeOptions?: string[];
-	NODE_OPTIONS?: string;
-}) => {
+type Node = ReturnType<typeof createNode>;
+
+export const getNodeConditions = async (
+	node: Node,
+	{
+		nodeOptions = [],
+		NODE_OPTIONS = '',
+	}: {
+		nodeOptions?: string[];
+		NODE_OPTIONS?: string;
+	},
+) => {
 	await using fixture = await createFixture({
 		'file.mjs': '',
 
