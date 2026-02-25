@@ -1,7 +1,7 @@
 import { describe, expect } from 'manten';
 import { createFixture } from 'fs-fixture';
 import { execaNode } from 'execa';
-import { getNodeConditions } from './utils.js';
+import { getNodeConditions } from './utils.ts';
 
 const getConditionsPath = import.meta.resolve('#get-conditions');
 

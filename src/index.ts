@@ -1,4 +1,4 @@
-import { envFlags, cliFlags } from './node-options.js';
+import { envFlags, cliFlags } from './node-options.ts';
 
 /**
  * ESM conditions

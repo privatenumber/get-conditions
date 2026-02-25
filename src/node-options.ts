@@ -1,5 +1,5 @@
 import { typeFlag } from 'type-flag';
-import { tokenizeNodeOptions } from './tokenize-node-options-env.js';
+import { tokenizeNodeOptions } from './tokenize-node-options-env.ts';
 
 const flagSchema = {
 	// https://nodejs.org/api/cli.html#-c-condition---conditionscondition
