@@ -15,10 +15,10 @@
     "name": "Hiroki Osame",
     "email": "hiroki.osame@gmail.com"
   },
-  "type": "module",
   "files": [
     "dist"
   ],
+  "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.cts",
@@ -37,9 +37,5 @@
       "development": "./src/index.ts",
       "default": "./dist/index.mjs"
     }
-  },
-  "dependencies": {
-    "shell-quote": "^1.8.1",
-    "type-flag": "^3.0.0"
   }
 }

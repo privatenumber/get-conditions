@@ -1,6 +1,6 @@
 # get-conditions [![Latest version](https://badgen.net/npm/v/get-conditions)](https://npm.im/get-conditions) [![npm downloads](https://badgen.net/npm/dm/get-conditions)](https://npm.im/get-conditions)
 
-Get Node import conditions at runtime
+Get Node import conditions at runtime. Zero dependencies.
 
 <br>
 
@@ -35,6 +35,10 @@ However, this information is not available at runtime. This makes it difficult w
 		</picture>
 	</a>
 </p>
+
+## Support
+
+The `--conditions` flag is currently supported in [Node.js](https://nodejs.org/api/cli.html#-c-condition---conditionscondition) and [Bun](https://bun.sh/docs/runtime/modules#custom-conditions). Deno does not currently have a way to set conditions
 
 ## API
 
