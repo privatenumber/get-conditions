@@ -13,4 +13,4 @@ const flagSchema = {
 } as const;
 
 export const { flags: envFlags } = typeFlag(flagSchema, tokenizeNodeOptions());
-export const { flags: cliFlags } = typeFlag(flagSchema, process.execArgv);
+export const { flags: cliFlags } = typeFlag(flagSchema, [...process.execArgv]);

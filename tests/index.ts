@@ -58,6 +58,31 @@ describe('get-conditions', () => {
 		expect(result).toStrictEqual(expected);
 	});
 
+	test('Does not mutate process.execArgv', async () => {
+		const fixture = await createFixture({
+			'file.mjs': `
+				import { getConditions } from '${getConditionsPath}';
+				getConditions();
+				console.log(JSON.stringify(process.execArgv));
+			`,
+		});
+
+		onTestFinish(async () => await fixture.rm());
+
+		const nodeOptions = ['--conditions=foo'];
+
+		const { stdout } = await execaNode('file.mjs', {
+			nodeOptions: [
+				...process.execArgv,
+				...nodeOptions,
+			],
+			cwd: fixture.path,
+		});
+		const result = JSON.parse(stdout);
+
+		expect(result).toContain('--conditions=foo');
+	});
+
 	test('Mix argv + NODE_OPTIONS', async () => {
 		const fixture = await createFixture({
 			'file.mjs': `
