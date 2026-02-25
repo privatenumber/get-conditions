@@ -1,6 +1,6 @@
 # get-conditions [![Latest version](https://badgen.net/npm/v/get-conditions)](https://npm.im/get-conditions) [![npm downloads](https://badgen.net/npm/dm/get-conditions)](https://npm.im/get-conditions)
 
-Get Node import conditions at runtime
+Get Node import conditions at runtime. Zero dependencies.
 
 <br>
 
