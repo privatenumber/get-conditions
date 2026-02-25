@@ -1,6 +1,4 @@
-import {
-	describe, test, expect, onTestFinish,
-} from 'manten';
+import { describe, test, expect } from 'manten';
 import { createFixture } from 'fs-fixture';
 import { execaNode } from 'execa';
 import { getNodeConditions } from './utils.ts';
@@ -9,14 +7,12 @@ const getConditionsPath = import.meta.resolve('#get-conditions');
 
 describe('get-conditions', () => {
 	test('Detects argv', async () => {
-		const fixture = await createFixture({
+		await using fixture = await createFixture({
 			'file.mjs': `
 			import { getConditions } from '${getConditionsPath}';
 			console.log(JSON.stringify(getConditions()));
 			`,
 		});
-
-		onTestFinish(async () => await fixture.rm());
 
 		const nodeOptions = [
 			'--conditions=foo',
@@ -37,14 +33,12 @@ describe('get-conditions', () => {
 	});
 
 	test('Detects NODE_OPTIONS', async () => {
-		const fixture = await createFixture({
+		await using fixture = await createFixture({
 			'file.mjs': `
 				import { getConditions } from '${getConditionsPath}';
 				console.log(JSON.stringify(getConditions()));
 			`,
 		});
-
-		onTestFinish(async () => await fixture.rm());
 
 		const NODE_OPTIONS = '--conditions=foo --conditions=bar';
 
@@ -59,15 +53,13 @@ describe('get-conditions', () => {
 	});
 
 	test('Does not mutate process.execArgv', async () => {
-		const fixture = await createFixture({
+		await using fixture = await createFixture({
 			'file.mjs': `
 				import { getConditions } from '${getConditionsPath}';
 				getConditions();
 				console.log(JSON.stringify(process.execArgv));
 			`,
 		});
-
-		onTestFinish(async () => await fixture.rm());
 
 		const nodeOptions = ['--conditions=foo'];
 
@@ -84,14 +76,12 @@ describe('get-conditions', () => {
 	});
 
 	test('Mix argv + NODE_OPTIONS', async () => {
-		const fixture = await createFixture({
+		await using fixture = await createFixture({
 			'file.mjs': `
 				import { getConditions } from '${getConditionsPath}';
 				console.log(JSON.stringify(getConditions()));
 			`,
 		});
-
-		onTestFinish(async () => await fixture.rm());
 
 		const NODE_OPTIONS = '--conditions=1 --conditions=2 --no-addons=0';
 		const nodeOptions = [
