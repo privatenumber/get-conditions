@@ -1,12 +1,14 @@
-import { describe, expect } from 'manten';
+import {
+	describe, test, expect, onTestFinish,
+} from 'manten';
 import { createFixture } from 'fs-fixture';
 import { execaNode } from 'execa';
 import { getNodeConditions } from './utils.ts';
 
 const getConditionsPath = import.meta.resolve('#get-conditions');
 
-describe('get-conditions', ({ test }) => {
-	test('Detects argv', async ({ onTestFinish }) => {
+describe('get-conditions', () => {
+	test('Detects argv', async () => {
 		const fixture = await createFixture({
 			'file.mjs': `
 			import { getConditions } from '${getConditionsPath}';
@@ -34,7 +36,7 @@ describe('get-conditions', ({ test }) => {
 		expect(result).toStrictEqual(expected);
 	});
 
-	test('Detects NODE_OPTIONS', async ({ onTestFinish }) => {
+	test('Detects NODE_OPTIONS', async () => {
 		const fixture = await createFixture({
 			'file.mjs': `
 				import { getConditions } from '${getConditionsPath}';
@@ -56,7 +58,7 @@ describe('get-conditions', ({ test }) => {
 		expect(result).toStrictEqual(expected);
 	});
 
-	test('Mix argv + NODE_OPTIONS', async ({ onTestFinish }) => {
+	test('Mix argv + NODE_OPTIONS', async () => {
 		const fixture = await createFixture({
 			'file.mjs': `
 				import { getConditions } from '${getConditionsPath}';

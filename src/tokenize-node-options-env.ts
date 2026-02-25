@@ -16,5 +16,5 @@ export const tokenizeNodeOptions = () => {
 			}
 			return undefined;
 		})
-		.filter(Boolean);
+		.filter((token): token is string => token !== undefined);
 };

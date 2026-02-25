@@ -15,9 +15,6 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
     devDependencies:
-      '@total-typescript/ts-reset':
-        specifier: ^0.6.1
-        version: 0.6.1
       '@types/node':
         specifier: ^25.3.0
         version: 25.3.0
@@ -37,8 +34,8 @@ importers:
         specifier: ^1.29.1
         version: 1.29.1(@types/estree@1.0.8)(@typescript-eslint/utils@8.56.1(eslint@9.39.3)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3)(typescript@5.9.3))(eslint@9.39.3))(jsonc-eslint-parser@2.4.2)(typescript@5.9.3)
       manten:
-        specifier: ^1.10.0
-        version: 1.10.0
+        specifier: 2.0.0-beta.2
+        version: 2.0.0-beta.2
       pkgroll:
         specifier: ^2.26.3
         version: 2.26.3(typescript@5.9.3)
@@ -772,9 +769,6 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
-
-  '@total-typescript/ts-reset@0.6.1':
-    resolution: {integrity: sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -2081,8 +2075,9 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  manten@1.10.0:
-    resolution: {integrity: sha512-YcapOHCdvi+Cm6qlxFBTCw/X3WfGahLCBo/OM8Ot3CK7QyT/rZtouDuVbbnkHhgX0g6ZkGMpjKPs0UsL5rWSAQ==}
+  manten@2.0.0-beta.2:
+    resolution: {integrity: sha512-sr4epsS6WG7oikdmEE+53IMWCMex8DN/57JY0NLfb0b0rruwz61ai3X0gK0gntL3b632v1vSZseBv7aAA27qAw==}
+    engines: {node: '>=20.20.0'}
 
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
@@ -3393,8 +3388,6 @@ snapshots:
       espree: 10.4.0
       estraverse: 5.3.0
       picomatch: 4.0.3
-
-  '@total-typescript/ts-reset@0.6.1': {}
 
   '@tybys/wasm-util@0.10.1':
     dependencies:
@@ -4967,7 +4960,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  manten@1.10.0:
+  manten@2.0.0-beta.2:
     dependencies:
       expect: 30.2.0
 
