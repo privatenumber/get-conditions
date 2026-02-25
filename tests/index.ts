@@ -62,9 +62,7 @@ describe('get-conditions', () => {
 		const fixture = await createFixture({
 			'file.mjs': `
 				import { getConditions } from '${getConditionsPath}';
-				console.log(JSON.stringify(getConditions({
-					import: true,
-				})));
+				console.log(JSON.stringify(getConditions()));
 			`,
 		});
 
