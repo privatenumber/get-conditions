@@ -1,7 +1,6 @@
 import { describe, test, expect } from 'manten';
 import { createFixture } from 'fs-fixture';
-import { execaNode } from 'execa';
-import { getNodeConditions } from './utils.ts';
+import { node, getNodeConditions } from './utils.ts';
 
 const getConditionsPath = import.meta.resolve('#get-conditions');
 
@@ -19,13 +18,10 @@ describe('get-conditions', () => {
 			'--conditions=bar',
 		];
 
-		const { stdout } = await execaNode('file.mjs', {
-			nodeOptions: [
-				...process.execArgv,
-				...nodeOptions,
-			],
-			cwd: fixture.path,
-		});
+		const { stdout } = await node([
+			...nodeOptions,
+			'file.mjs',
+		], { cwd: fixture.path });
 		const result = JSON.parse(stdout);
 
 		const expected = await getNodeConditions({ nodeOptions });
@@ -42,9 +38,9 @@ describe('get-conditions', () => {
 
 		const NODE_OPTIONS = '--conditions=foo --conditions=bar';
 
-		const { stdout } = await execaNode('file.mjs', {
-			env: { NODE_OPTIONS },
+		const { stdout } = await node(['file.mjs'], {
 			cwd: fixture.path,
+			env: { NODE_OPTIONS },
 		});
 		const result = JSON.parse(stdout);
 
@@ -63,13 +59,10 @@ describe('get-conditions', () => {
 
 		const nodeOptions = ['--conditions=foo'];
 
-		const { stdout } = await execaNode('file.mjs', {
-			nodeOptions: [
-				...process.execArgv,
-				...nodeOptions,
-			],
-			cwd: fixture.path,
-		});
+		const { stdout } = await node([
+			...nodeOptions,
+			'file.mjs',
+		], { cwd: fixture.path });
 		const result = JSON.parse(stdout);
 
 		expect(result).toContain('--conditions=foo');
@@ -89,13 +82,12 @@ describe('get-conditions', () => {
 			'--conditions=4',
 		];
 
-		const { stdout } = await execaNode('file.mjs', {
-			env: { NODE_OPTIONS },
-			nodeOptions: [
-				...process.execArgv,
-				...nodeOptions,
-			],
+		const { stdout } = await node([
+			...nodeOptions,
+			'file.mjs',
+		], {
 			cwd: fixture.path,
+			env: { NODE_OPTIONS },
 		});
 		const result = JSON.parse(stdout);
 

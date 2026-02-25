@@ -1,5 +1,10 @@
 import { createFixture } from 'fs-fixture';
-import { execaNode } from 'execa';
+import spawn, { type Options } from 'nano-spawn';
+
+export const node = (
+	args: string[],
+	options?: Options,
+) => spawn(process.execPath, [...process.execArgv, ...args], options);
 
 export const getNodeConditions = async ({
 	nodeOptions = [],
@@ -30,17 +35,14 @@ export const getNodeConditions = async ({
 		`,
 	});
 
-	const { stdout } = await execaNode('file.mjs', {
-		nodeOptions: [
-			...process.execArgv,
-			'--import',
-			'./register.mjs',
-			...nodeOptions,
-		],
+	const { stdout } = await node([
+		'--import',
+		'./register.mjs',
+		...nodeOptions,
+		'file.mjs',
+	], {
 		cwd: fixture.path,
-		env: {
-			NODE_OPTIONS,
-		},
+		env: { NODE_OPTIONS },
 	});
 	return JSON.parse(stdout);
 };
