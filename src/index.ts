@@ -1,4 +1,4 @@
-import { envFlags, cliFlags } from './node-options.ts';
+import { getNodeFlags } from './node-options.ts';
 
 /**
  * ESM conditions
@@ -8,12 +8,11 @@ import { envFlags, cliFlags } from './node-options.ts';
  * https://github.com/nodejs/node/blob/v24.11.0/lib/internal/modules/helpers.js#L60-L76
  */
 export const getConditions = () => {
-	const noAddons = envFlags['no-addons'] || cliFlags['no-addons'];
+	const { conditions, addons } = getNodeFlags();
 	return [
 		'node',
 		...(process.features?.require_module ? ['module-sync'] : []),
-		...(noAddons ? [] : ['node-addons']),
-		...(envFlags.conditions ?? []),
-		...(cliFlags.conditions ?? []),
+		...(addons ? ['node-addons'] : []),
+		...(conditions ?? []),
 	];
 };

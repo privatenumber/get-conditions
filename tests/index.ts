@@ -17,6 +17,12 @@ for (const version of nodeVersions) {
 			import { getConditions } from '${getConditionsPath}';
 			console.log(JSON.stringify({ conditions: getConditions(), execArgv: process.execArgv }));
 			`,
+
+			'lazy.mjs': `
+			import { getConditions } from '${getConditionsPath}';
+			process.env.NODE_OPTIONS = '--conditions=set-after-import';
+			console.log(JSON.stringify(getConditions()));
+			`,
 		});
 		onFinish(() => fixture.rm());
 
@@ -62,6 +68,80 @@ for (const version of nodeVersions) {
 			const { conditions } = JSON.parse(stdout);
 
 			expect(conditions).not.toContain('node-addons');
+		});
+
+		test('--no_addons underscore alias excludes node-addons', async () => {
+			const nodeOptions = ['--no_addons'];
+
+			const { stdout } = await node([
+				...nodeOptions,
+				'file.mjs',
+			], { cwd: fixture.path });
+			const { conditions } = JSON.parse(stdout);
+
+			expect(conditions).not.toContain('node-addons');
+
+			const expected = await getNodeConditions(node, { nodeOptions });
+			expect(conditions).toStrictEqual(expected);
+		});
+
+		test('Boolean flag values are ignored (--no-addons=false still disables)', async () => {
+			const nodeOptions = ['--no-addons=false'];
+
+			const { stdout } = await node([
+				...nodeOptions,
+				'file.mjs',
+			], { cwd: fixture.path });
+			const { conditions } = JSON.parse(stdout);
+
+			expect(conditions).not.toContain('node-addons');
+
+			const expected = await getNodeConditions(node, { nodeOptions });
+			expect(conditions).toStrictEqual(expected);
+		});
+
+		test('Last addons flag wins (--no-addons --addons)', async () => {
+			const nodeOptions = ['--no-addons', '--addons'];
+
+			const { stdout } = await node([
+				...nodeOptions,
+				'file.mjs',
+			], { cwd: fixture.path });
+			const { conditions } = JSON.parse(stdout);
+
+			expect(conditions).toContain('node-addons');
+
+			const expected = await getNodeConditions(node, { nodeOptions });
+			expect(conditions).toStrictEqual(expected);
+		});
+
+		test('argv --addons overrides NODE_OPTIONS --no-addons', async () => {
+			const NODE_OPTIONS = '--no-addons';
+			const nodeOptions = ['--addons'];
+
+			const { stdout } = await node([
+				...nodeOptions,
+				'file.mjs',
+			], {
+				cwd: fixture.path,
+				env: { NODE_OPTIONS },
+			});
+			const { conditions } = JSON.parse(stdout);
+
+			expect(conditions).toContain('node-addons');
+
+			const expected = await getNodeConditions(node, {
+				nodeOptions,
+				NODE_OPTIONS,
+			});
+			expect(conditions).toStrictEqual(expected);
+		});
+
+		test('Flags are parsed lazily on first call', async () => {
+			const { stdout } = await node(['lazy.mjs'], { cwd: fixture.path });
+			const conditions = JSON.parse(stdout);
+
+			expect(conditions).toContain('set-after-import');
 		});
 
 		test('NODE_OPTIONS conditions come before argv conditions', async () => {
