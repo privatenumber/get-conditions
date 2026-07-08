@@ -1,4 +1,5 @@
-import { getOptionValue } from 'get-option-value/latest';
+import { getOptionValue } from 'get-option-value';
+import { conditionsFlag, addonsFlag } from 'get-option-value/flags';
 
 /**
  * ESM conditions
@@ -10,6 +11,6 @@ import { getOptionValue } from 'get-option-value/latest';
 export const getConditions = () => [
 	'node',
 	...(process.features?.require_module ? ['module-sync'] : []),
-	...(getOptionValue('--addons') ? ['node-addons'] : []),
-	...getOptionValue('--conditions'),
+	...(getOptionValue(addonsFlag) ? ['node-addons'] : []),
+	...getOptionValue(conditionsFlag),
 ];
