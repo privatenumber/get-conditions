@@ -56,7 +56,7 @@
 		"lintroll": "^1.29.1",
 		"manten": "2.0.0-beta.2",
 		"nano-spawn": "^2.0.0",
-		"pkgroll": "^2.26.3",
+		"pkgroll": "^2.27.0",
 		"typescript": "^5.9.3"
 	}
 }
