@@ -52,7 +52,7 @@
 		"clean-pkg-json": "^1.3.0",
 		"fs-fixture": "^2.11.0",
 		"get-node": "^15.0.4",
-		"get-option-value": "github:privatenumber/get-option-value#npm/develop",
+		"get-option-value": "^1.0.0",
 		"lintroll": "^1.29.1",
 		"manten": "2.0.0-beta.2",
 		"nano-spawn": "^2.0.0",
