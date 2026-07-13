@@ -22,7 +22,7 @@ importers:
         version: 15.0.4
       get-option-value:
         specifier: github:privatenumber/get-option-value#npm/develop
-        version: git+https://git@github.com:privatenumber/get-option-value.git#59e5928a0898152582386ff5bff29393942f9195
+        version: git+https://git@github.com:privatenumber/get-option-value.git#530bffe112d8e1e27874ee36ad314b4d10c1b7f6
       lintroll:
         specifier: ^1.29.1
         version: 1.29.1(@types/estree@1.0.8)(@typescript-eslint/utils@8.56.1(eslint@9.39.3)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3)(typescript@5.9.3))(eslint@9.39.3))(jsonc-eslint-parser@2.4.2)(typescript@5.9.3)
@@ -1840,8 +1840,8 @@ packages:
     resolution: {integrity: sha512-em3oHkEgfS0gpK2g2vglilfqQh0JAf5U3LdXFssILV43um6x4eNTCp8nBNDNW+9HCtt3hf9b07zIEJnn7Wo8Iw==}
     engines: {node: '>=18.18.0'}
 
-  get-option-value@git+https://git@github.com:privatenumber/get-option-value.git#59e5928a0898152582386ff5bff29393942f9195:
-    resolution: {commit: 59e5928a0898152582386ff5bff29393942f9195, repo: git@github.com:privatenumber/get-option-value.git, type: git}
+  get-option-value@git+https://git@github.com:privatenumber/get-option-value.git#530bffe112d8e1e27874ee36ad314b4d10c1b7f6:
+    resolution: {commit: 530bffe112d8e1e27874ee36ad314b4d10c1b7f6, repo: git@github.com:privatenumber/get-option-value.git, type: git}
     version: 0.0.0-semantic-release
     engines: {node: '>=18'}
 
@@ -5149,7 +5149,7 @@ snapshots:
       - bare-buffer
       - react-native-b4a
 
-  get-option-value@git+https://git@github.com:privatenumber/get-option-value.git#59e5928a0898152582386ff5bff29393942f9195: {}
+  get-option-value@git+https://git@github.com:privatenumber/get-option-value.git#530bffe112d8e1e27874ee36ad314b4d10c1b7f6: {}
 
   get-proto@1.0.1:
     dependencies:
